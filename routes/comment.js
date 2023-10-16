@@ -15,7 +15,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.post("/", isAdmin, async (request, response) => {
+router.post("/", async (request, response) => {
   try {
     const newComment = new Comment({
       comments: request.body.comments,
