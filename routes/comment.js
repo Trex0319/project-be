@@ -15,7 +15,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.post("/", async (request, response) => {
+router.post("/", authMiddleware, async (request, response) => {
   try {
     const newComment = new Comment({
       comments: request.body.comments,
@@ -37,7 +37,6 @@ router.delete("/:id", authMiddleware, async (request, response) => {
       response.status(200).send("The comment has been deleted.");
     }
   } catch (error) {
-    console.log(error);
     response.status(400).send({ message: error._message });
   }
 });
