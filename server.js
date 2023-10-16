@@ -7,7 +7,6 @@ const app = express();
 app.use(express.json());
 const port = 8000;
 
-// setup cors
 const corsHandler = cors({
   origin: "*",
   methods: "GET,POST,PUT,DELETE",
@@ -18,7 +17,6 @@ const corsHandler = cors({
 
 app.use(corsHandler);
 
-// MongoDB Connection
 mongoose
   .connect(MONGODB_URL + "carshowcase")
   .then(() => console.log("MongoDBConnected... "))

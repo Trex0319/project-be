@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Comment = require("../models/comment.js");
-const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config");
 const authMiddleware = require("../middleware/auth");
-const isAdminMiddleware = require("../middleware/isAdmin");
+const isAdmin = require("../middleware/isAdmin");
 
 router.get("/:id", async (request, response) => {
   try {
@@ -17,7 +15,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.post("/", authMiddleware, async (request, response) => {
+router.post("/", isAdmin, async (request, response) => {
   try {
     const newComment = new Comment({
       comments: request.body.comments,
